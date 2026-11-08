@@ -366,7 +366,7 @@ make check
 - проверяет локальные ссылки на скриншоты и синтаксис всех JS-файлов.
 
 GitHub Actions прогоняет те же проверки на Node.js 18, 20 и 22 при push в
-`main`/`develop` и на pull request.
+`main`/`develop`, на pull request и вручную через `workflow_dispatch`.
 
 Ручной сценарий — в [docs/QA-CHECKLIST.md](docs/QA-CHECKLIST.md).
 
