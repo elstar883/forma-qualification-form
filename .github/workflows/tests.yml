@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static app
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Validate structure, rules and app
+        run: node scripts/validate.mjs
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check app/js/config.js
+          node --check app/js/validation.js
+          node --check app/js/qualification.js
+          node --check app/js/storage.js
+          node --check app/js/app.js

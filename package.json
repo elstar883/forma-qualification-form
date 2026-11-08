@@ -1,0 +1,16 @@
+{
+  "name": "forma-qualification-form",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Пошаговая анкета квалификации обращений для студии интерьера FORMA: HTML, CSS и JavaScript без зависимостей.",
+  "license": "MIT",
+  "author": "Elsa (elstar883)",
+  "scripts": {
+    "check": "node scripts/validate.mjs",
+    "serve": "python3 -m http.server 8080 --directory app"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
