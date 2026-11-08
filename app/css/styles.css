@@ -1,0 +1,328 @@
+/* styles.css — фирменный стиль FORMA (ТЗ §11 NFR-06, §5.1)
+   Светлый фон, тёмно-графитовый текст, акцент #C86B4A, скруглённые карточки,
+   крупная типографика. Внешние шрифты и ресурсы не используются (NFR-03). */
+
+:root {
+  --bg: #FAF9F7;          /* светлый фон */
+  --surface: #FFFFFF;
+  --text: #2B3035;        /* тёмно-графитовый текст */
+  --muted: #6B7075;
+  --accent: #C86B4A;      /* терракотовый акцент бренда */
+  --accent-dark: #A8543A;
+  --border: #E6E2DC;
+  --error: #B33A22;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;            /* NFR-06: основной текст ≥ 16 px */
+  line-height: 1.45;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* Текстовый логотип (источник 06: логотипа нет, используем FORMA) */
+.brand {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 8px 0 32px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.screen-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.screen-subtitle {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.lead {
+  font-size: 18px;
+  margin: 0 0 28px;
+}
+
+.progress {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.optional {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* ---------- Поля ---------- */
+
+.field {
+  margin-bottom: 22px;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.field input[type="text"],
+.field select {
+  width: 100%;
+  min-height: 44px;           /* NFR-07 */
+  padding: 10px 14px;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  appearance: none;
+}
+
+.field select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+.field input[type="text"]:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(200, 107, 74, 0.25);
+}
+
+.hint {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.error {
+  font-size: 14px;
+  color: var(--error);
+  margin: 8px 0 0;
+}
+
+.error[hidden] {
+  display: none;
+}
+
+/* Чекбокс: зона нажатия не меньше 44 px (NFR-07) */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font-weight: 400;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.check input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  accent-color: var(--accent);
+}
+
+/* ---------- Кнопки ---------- */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  min-height: 44px;           /* NFR-07 */
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(200, 107, 74, 0.35);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.btn--primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* На узком экране основная кнопка занимает всю ширину (FR-12) */
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- Экран проверки ---------- */
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.answer:hover {
+  border-color: var(--accent);
+}
+
+.answer-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.answer-value {
+  word-break: break-word;
+}
+
+.answer-value:empty::before {
+  content: "—";
+  color: var(--muted);
+}
+
+/* ---------- Карточка менеджера ---------- */
+
+/* Блок предварительного статуса (FR-07) */
+.status {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.status-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.status-value {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.status-reasons-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+.status-reasons {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.status-reasons li {
+  margin-bottom: 4px;
+}
+
+.status-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Сообщение о результате копирования (FR-08) */
+.copy-status {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+.copy-status--error {
+  color: var(--error);
+}
+
+.card-list .answer {
+  cursor: default;
+}
+
+.card-list .answer:hover {
+  border-color: var(--border);
+}
+
+/* ---------- Завершение ---------- */
+
+.thanks {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
